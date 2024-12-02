@@ -66,7 +66,7 @@ def safe_mape(y_true, y_pred):
 
 try:
     model_terbaik = load("model_terbaik.pkl")
-    st.write("Model berhasil dimuat:", model_terbaik)
+    # st.write("Model berhasil dimuat:", model_terbaik)
 except Exception as e:
     st.write(f"Error saat membuka file joblib: {e}")
 
