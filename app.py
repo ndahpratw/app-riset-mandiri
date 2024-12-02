@@ -65,10 +65,13 @@ def run_experiment(dataset, hidden_neurons_range, train_test_ratios):
 def safe_mape(y_true, y_pred):
     mask = y_true != 0  # Hanya menghitung MAPE ketika nilai y_true tidak nol
     return np.mean(np.abs((y_true[mask] - y_pred[mask]) / y_true[mask]) * 100)  # Kembali ke format desimal
-
-# Membuka file pickle
-with open("model_terbaik.pkl", "rb") as file:
-    model_terbaik = pickle.load(file)
+    
+try:
+    with open("model_terbaik.pkl", "rb") as f:
+        model = pickle.load(f)
+    print("Model berhasil dibuka!")
+except Exception as e:
+    print(f"Error saat membuka model: {e}")
 
 if (selected == 'Dataset'):
     st.info("Data curah hujan harian diperoleh dari Badan Meteorologi, Klimatologi, dan Geofisika (BMKG). Kabupaten Bangkalan tidak memiliki stasiun pengamatan cuaca, sehingga data curah hujan yang diolah dari hasil pengamatan stasiun pengamatan cuaca terdekat, yaitu Stasiun Meteorologi Perak I Surabaya.")
