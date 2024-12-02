@@ -1,4 +1,5 @@
 import os
+import pickle
 import streamlit as st
 
 # Mendapatkan path direktori saat ini
@@ -16,5 +17,13 @@ st.write("Path to File:", file_path)
 # Mengecek keberadaan file
 if os.path.exists(file_path):
     st.success("File ditemukan!")
+
+    # Membuka file pickle dan memuat model
+    try:
+        with open(file_path, "rb") as file:
+            model_terbaik = pickle.load(file)
+        st.success("Model berhasil dimuat!")
+    except Exception as e:
+        st.error(f"Error saat membuka file pickle: {e}")
 else:
     st.error("File tidak ditemukan!")
