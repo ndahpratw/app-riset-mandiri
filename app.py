@@ -1,4 +1,4 @@
-import pickle
+import sys
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -8,14 +8,16 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
+import pickle
 
 st.markdown(
-    "<h2 style='text-align: center;'><i>Extreame Learning Machine</i> Untuk Memprediksi Curah Hujan Dalam Penentuan Jadwal Tanam Padi</h2><br><br><br>", unsafe_allow_html=True
+    "<h2 style='text-align: center;'><i>Extreme Learning Machine</i> Untuk Memprediksi Curah Hujan Dalam Penentuan Jadwal Tanam Padi</h2><br><br><br>", unsafe_allow_html=True
 )
 
 with st.sidebar:
     selected = option_menu("Main Menu", ['Dataset', 'Preprocessing', 'Modelling', 'Prediction'], default_index=3)
 
+st.write("Versi Python yang digunakan:", sys.version)
 
 # DATASET --------------------------------------------------------------
 data = pd.read_excel('data.xlsx', parse_dates=['Tanggal'])
