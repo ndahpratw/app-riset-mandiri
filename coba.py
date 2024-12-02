@@ -16,7 +16,7 @@ st.write("Path to File:", file_path)
 
 # Mengecek keberadaan file
 if os.path.exists(file_path):
-    st.success("File ditemukan!")
+    st.success("File ditemukan COE!")
 
     # Membuka file pickle dan memuat model
     try:
