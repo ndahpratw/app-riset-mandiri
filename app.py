@@ -17,13 +17,6 @@ st.markdown(
 with st.sidebar:
     selected = option_menu("Main Menu", ['Dataset', 'Preprocessing', 'Modelling', 'Prediction'], default_index=3)
 
-st.write("Versi Python yang digunakan:", sys.version)
-# st.write("Numpy:", numpy.__version__)
-st.write("Pandas:", pd.__version__)
-st.write("Scipy:", scipy.__version__)
-st.write("Scikit-learn:", sklearn.__version__)
-st.write("Matplotlib:", matplotlib.__version__)
-
 # DATASET --------------------------------------------------------------
 data = pd.read_excel('data.xlsx', parse_dates=['Tanggal'])
 dataset = pd.read_excel('dataset.xlsx')
@@ -70,9 +63,13 @@ def run_experiment(dataset, hidden_neurons_range, train_test_ratios):
 def safe_mape(y_true, y_pred):
     mask = y_true != 0  # Hanya menghitung MAPE ketika nilai y_true tidak nol
     return np.mean(np.abs((y_true[mask] - y_pred[mask]) / y_true[mask]) * 100)  # Kembali ke format desimal
-    
+
+current_dir = os.getcwd() # Mendapatkan path direktori saat ini
+files = os.listdir(current_dir) # List file yang ada di direktori
+file_path = os.path.join(current_dir, "model_terbaik.pkl")
+
 try:
-    with open("model_terbaik.pkl", "rb") as f:
+    with open(file_path, "rb") as f:
         model = pickle.load(f)
     st.write("Model berhasil dibuka!")
 except Exception as e:
