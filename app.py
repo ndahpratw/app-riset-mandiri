@@ -18,7 +18,7 @@ with st.sidebar:
     selected = option_menu("Main Menu", ['Dataset', 'Preprocessing', 'Modelling', 'Prediction'], default_index=3)
 
 st.write("Versi Python yang digunakan:", sys.version)
-st.write("Numpy:", numpy.__version__)
+# st.write("Numpy:", numpy.__version__)
 st.write("Pandas:", pd.__version__)
 st.write("Scipy:", scipy.__version__)
 st.write("Scikit-learn:", sklearn.__version__)
