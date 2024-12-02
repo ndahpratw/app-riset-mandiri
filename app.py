@@ -70,8 +70,7 @@ file_path = os.path.join(current_dir, "model_terbaik.pkl")
 
 try:
     with open(file_path, "rb") as f:
-        model = pickle.load(f)
-    st.write("Model berhasil dibuka!")
+        model_terbaik = pickle.load(f)
 except Exception as e:
     st.write(f"Error saat membuka model: {e}")
 
