@@ -11,7 +11,7 @@ files = os.listdir(current_dir)
 st.write("Files in Current Directory:", files)
 
 # Membuat path ke file tertentu (misalnya, 'model_terbaik.pkl')
-file_path = os.path.join(current_dir, "model_terbaik.pkl")
+file_path = os.path.join(current_dir, "model_elm_terbaik.pkl")
 st.write("Path to File:", file_path)
 
 # Mengecek keberadaan file
