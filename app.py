@@ -69,9 +69,9 @@ def safe_mape(y_true, y_pred):
 try:
     with open("model_terbaik.pkl", "rb") as f:
         model = pickle.load(f)
-    print("Model berhasil dibuka!")
+    st.write("Model berhasil dibuka!")
 except Exception as e:
-    print(f"Error saat membuka model: {e}")
+    st.write(f"Error saat membuka model: {e}")
 
 if (selected == 'Dataset'):
     st.info("Data curah hujan harian diperoleh dari Badan Meteorologi, Klimatologi, dan Geofisika (BMKG). Kabupaten Bangkalan tidak memiliki stasiun pengamatan cuaca, sehingga data curah hujan yang diolah dari hasil pengamatan stasiun pengamatan cuaca terdekat, yaitu Stasiun Meteorologi Perak I Surabaya.")
