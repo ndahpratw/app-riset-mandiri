@@ -8,7 +8,7 @@ from sklearn.preprocessing import MinMaxScaler
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
-import pickle
+from joblib import load
 
 st.markdown(
     "<h2 style='text-align: center;'><i>Extreme Learning Machine</i> Untuk Memprediksi Curah Hujan Dalam Penentuan Jadwal Tanam Padi</h2><br><br><br>", unsafe_allow_html=True
@@ -64,15 +64,11 @@ def safe_mape(y_true, y_pred):
     mask = y_true != 0  # Hanya menghitung MAPE ketika nilai y_true tidak nol
     return np.mean(np.abs((y_true[mask] - y_pred[mask]) / y_true[mask]) * 100)  # Kembali ke format desimal
 
-current_dir = os.getcwd() # Mendapatkan path direktori saat ini
-files = os.listdir(current_dir) # List file yang ada di direktori
-file_path = os.path.join(current_dir, "model_terbaik.pkl")
-
 try:
-    with open(file_path, "rb") as f:
-        model_terbaik = pickle.load(f)
+    model_terbaik = load("model_terbaik.pkl")
+    # st.write("Model berhasil dimuat:", model_terbaik)
 except Exception as e:
-    st.write(f"Error saat membuka model: {e}")
+    st.write(f"Error saat membuka file joblib: {e}")
 
 if (selected == 'Dataset'):
     st.info("Data curah hujan harian diperoleh dari Badan Meteorologi, Klimatologi, dan Geofisika (BMKG). Kabupaten Bangkalan tidak memiliki stasiun pengamatan cuaca, sehingga data curah hujan yang diolah dari hasil pengamatan stasiun pengamatan cuaca terdekat, yaitu Stasiun Meteorologi Perak I Surabaya.")
@@ -352,4 +348,3 @@ if (selected == 'Prediction'):
                 st.success(f"Prediksi curah hujan pada hari ke-{days_to_predict}: {last_prediction:.2f} mm")
             else:
                 st.error(f"Tidak turun hujan pada hari ke-{days_to_predict}")
-
